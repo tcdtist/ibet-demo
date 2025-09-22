@@ -1,3 +1,4 @@
+import { createBrowserClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "./database.types";
 
@@ -13,11 +14,18 @@ const hasValidCredentials =
   supabaseAnonKey !== "placeholder-anon-key";
 
 if (isDevelopment && !hasValidCredentials && typeof window !== "undefined") {
+  // eslint-disable-next-line no-console
   console.warn(
     "⚠️ Missing Supabase environment variables. Please add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to your .env.local file."
   );
 }
 
+// Client-side Supabase client
+export const createClientComponentClient = () => {
+  return createBrowserClient<Database>(supabaseUrl, supabaseAnonKey);
+};
+
+// Legacy client for backwards compatibility
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,

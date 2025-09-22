@@ -15,7 +15,9 @@ A modern, production-ready starter template with **Next.js 14**, **Supabase**, *
 - 🎨 **TailwindCSS** with beautiful UI components and dark mode support
 - 📘 **TypeScript** first with strict configuration and auto-generated database types
 - ⚡ **Bun** for ultra-fast package management and runtime
-- 🔒 **Authentication** ready with social providers and email/password
+- 🔒 **Authentication** with Supabase Auth (email/password + Google OAuth)
+- 🛡️ **Protected Routes** with middleware and role-based access
+- 👤 **User Management** with session handling and auth hooks
 - 🗄️ **PostgreSQL** database with Row Level Security (RLS)
 - 📁 **File Storage** with Supabase Storage integration
 - 🌐 **SEO Optimized** with meta tags, sitemap, and structured data
@@ -109,7 +111,12 @@ igaming-demo/
 ├─ src/
 │  ├─ app/                   # Next.js App Router
 │  │  ├─ api/               # API routes
-│  │  ├─ layout.tsx         # Root layout
+│  │  ├─ auth/              # Auth pages
+│  │  │  └─ callback/       # OAuth callback
+│  │  ├─ dashboard/         # User dashboard
+│  │  ├─ admin/             # Admin panel
+│  │  ├─ login/             # Login page
+│  │  ├─ layout.tsx         # Root layout with SupabaseProvider
 │  │  └─ page.tsx           # Home page
 │  ├─ components/           # React components
 │  │  ├─ ui/               # Reusable UI components
@@ -120,9 +127,12 @@ igaming-demo/
 │  │  ├─ cta.tsx           # Call to action
 │  │  └─ footer.tsx        # Site footer
 │  ├─ lib/                 # Utility functions
-│  │  ├─ supabase.ts       # Supabase client
+│  │  ├─ providers/        # React providers
+│  │  │  └─ supabase-provider.tsx # Auth context provider
+│  │  ├─ supabase.ts       # Supabase clients (SSR + Client)
 │  │  ├─ database.types.ts # Database types
 │  │  └─ utils.ts          # Helper functions
+│  ├─ middleware.ts         # Route protection middleware
 │  └─ styles/
 │     └─ globals.css       # Global styles
 ├─ supabase/
@@ -177,6 +187,99 @@ bun run supabase:types   # Generate TypeScript types
 2. **Database**: PostgreSQL with Row Level Security enabled
 3. **Storage**: File upload and management
 4. **Edge Functions**: Serverless functions for custom logic
+
+## 🔐 Authentication Setup
+
+This template comes with a complete authentication system built with Supabase Auth:
+
+### Features
+
+- ✅ Email/password authentication
+- ✅ Google OAuth login
+- ✅ Protected routes middleware
+- ✅ Session management
+- ✅ Auth hooks (`useUser`, `useLogin`, `useLogout`)
+- ✅ Role-based access control
+- ✅ Automatic redirects after login/logout
+
+### Environment Variables for Auth
+
+Create a `.env.local` file with the following variables:
+
+```env
+# Supabase Configuration (Required)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+
+# Optional: Service role key for admin operations
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+# Development
+NODE_ENV=development
+```
+
+### Google OAuth Setup
+
+To enable Google authentication:
+
+1. Go to your Supabase dashboard > Authentication > Providers
+2. Enable Google provider
+3. Add your Google OAuth credentials:
+   - Client ID
+   - Client Secret
+4. Set redirect URL: `https://your-domain.com/auth/callback`
+
+### Protected Routes
+
+The following routes are automatically protected:
+
+- `/dashboard` - User dashboard (requires authentication)
+- `/admin` - Admin panel (requires authentication)
+- `/login` - Login page (redirects if already authenticated)
+
+### Auth Pages
+
+- **`/login`** - Login/signup form with email/password and Google OAuth
+- **`/dashboard`** - User dashboard showing profile info
+- **`/admin`** - Admin panel for system management
+- **`/auth/callback`** - OAuth callback handler
+
+### Using Auth Hooks
+
+```tsx
+import {
+  useAuth,
+  useUser,
+  useLogin,
+  useLogout,
+} from "@/lib/providers/supabase-provider";
+
+function MyComponent() {
+  const { user, loading } = useAuth();
+  const { login, loginWithGoogle } = useLogin();
+  const logout = useLogout();
+
+  if (loading) return <div>Loading...</div>;
+
+  if (!user) {
+    return (
+      <div>
+        <button onClick={() => login("email@example.com", "password")}>
+          Login with Email
+        </button>
+        <button onClick={loginWithGoogle}>Login with Google</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <p>Welcome, {user.email}!</p>
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
+}
+```
 
 ### TailwindCSS
 

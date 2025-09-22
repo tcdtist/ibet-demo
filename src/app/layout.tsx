@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+import { SupabaseProvider } from "@/lib/providers/supabase-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -71,9 +72,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="font-inter antialiased">
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-          {children}
-        </div>
+        <SupabaseProvider>
+          <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+            {children}
+          </div>
+        </SupabaseProvider>
       </body>
     </html>
   );
