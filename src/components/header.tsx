@@ -22,7 +22,7 @@ function DesktopNav() {
       <NavLink href="#features" label="Features" />
       <NavLink href="#tech-stack" label="Tech Stack" />
       <NavLink
-        href="https://github.com/tcdtist/ibet-demo"
+        href="https://github.com/tcdtist/igaming-demo"
         label="GitHub"
         external
       />
@@ -37,7 +37,7 @@ function MobileNav({ onClose }: { onClose: () => void }) {
         <NavLink href="#features" label="Features" onClick={onClose} />
         <NavLink href="#tech-stack" label="Tech Stack" onClick={onClose} />
         <NavLink
-          href="https://github.com/tcdtist/ibet-demo"
+          href="https://github.com/tcdtist/igaming-demo"
           label="GitHub"
           external
           onClick={onClose}
@@ -76,7 +76,7 @@ function ActionButtons() {
     <>
       <Button asChild variant="outline" size="sm" className="hidden md:flex">
         <Link
-          href="https://github.com/tcdtist/ibet-demo"
+          href="https://github.com/tcdtist/igaming-demo"
           target="_blank"
           rel="noopener noreferrer"
         >

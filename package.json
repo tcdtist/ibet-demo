@@ -1,8 +1,8 @@
 {
-  "name": "ibet-demo",
+  "name": "igaming-demo",
   "version": "0.1.0",
   "private": true,
-  "description": "A modern Next.js starter with Supabase, TailwindCSS, TypeScript, and Bun for ibet demo",
+  "description": "A modern Next.js starter with Supabase, TailwindCSS, TypeScript, and Bun for igaming demo",
   "scripts": {
     "dev": "bunx next dev",
     "build": "bunx next build",

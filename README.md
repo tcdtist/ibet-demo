@@ -38,8 +38,8 @@ A modern, production-ready starter template with **Next.js 14**, **Supabase**, *
 Click the "Use this template" button on GitHub or clone the repository:
 
 ```bash
-git clone https://github.com/your-username/ibet-demo.git
-cd ibet-demo
+git clone https://github.com/your-username/igaming-demo.git
+cd igaming-demo
 ```
 
 ### 2. Install Dependencies
@@ -100,7 +100,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application!
 ## 📁 Project Structure
 
 ```
-ibet-demo/
+igaming-demo/
 ├─ .github/
 │  └─ workflows/
 │     └─ ci.yml              # GitHub Actions CI/CD

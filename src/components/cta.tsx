@@ -21,7 +21,7 @@ function CTAButtons() {
     <div className="flex flex-col gap-4 sm:flex-row sm:justify-center mb-12">
       <Button size="lg" asChild>
         <Link
-          href="https://github.com/tcdtist/ibet-demo/generate"
+          href="https://github.com/tcdtist/igaming-demo/generate"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -31,7 +31,7 @@ function CTAButtons() {
       </Button>
       <Button variant="outline" size="lg" asChild>
         <Link
-          href="https://github.com/tcdtist/ibet-demo"
+          href="https://github.com/tcdtist/igaming-demo"
           target="_blank"
           rel="noopener noreferrer"
         >

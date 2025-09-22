@@ -48,7 +48,7 @@ function HeroButtons() {
       </Button>
       <Button variant="outline" size="lg" asChild>
         <Link
-          href="https://github.com/your-username/ibet-demo"
+          href="https://github.com/your-username/igaming-demo"
           target="_blank"
           rel="noopener noreferrer"
         >

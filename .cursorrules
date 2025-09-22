@@ -6,7 +6,7 @@
         "**/*"
       ],
       "prompts": [
-        "Bạn là Architect. Hãy tạo cấu trúc thư mục và file cần thiết cho dự án 'ibet-demo'. Stack: Next.js 14 App Router + Supabase + TailwindCSS + TypeScript + Bun. Output: cây thư mục + nội dung file cơ bản (package.json, tsconfig.json, tailwind.config.ts, .env.example, .github/workflows/ci.yml)."
+        "Bạn là Architect. Hãy tạo cấu trúc thư mục và file cần thiết cho dự án 'igaming-demo'. Stack: Next.js 14 App Router + Supabase + TailwindCSS + TypeScript + Bun. Output: cây thư mục + nội dung file cơ bản (package.json, tsconfig.json, tailwind.config.ts, .env.example, .github/workflows/ci.yml)."
       ]
     },
     {
@@ -17,7 +17,7 @@
         "src/middleware.ts"
       ],
       "prompts": [
-        "Bạn là Auth Agent. Hãy triển khai module Auth cho dự án 'ibet-demo': Supabase Auth (email/password + Google), middleware bảo vệ route, SupabaseProvider trong layout.tsx, hooks useUser(), useLogin(), useLogout()."
+        "Bạn là Auth Agent. Hãy triển khai module Auth cho dự án 'igaming-demo': Supabase Auth (email/password + Google), middleware bảo vệ route, SupabaseProvider trong layout.tsx, hooks useUser(), useLogin(), useLogout()."
       ]
     },
     {
@@ -28,7 +28,7 @@
         "src/components/cms/**"
       ],
       "prompts": [
-        "Bạn là CMS Agent. Tạo module CMS cho 'ibet-demo': Model Post (id, title, slug, content, published_at), API Routes CRUD, Admin UI danh sách/tạo/sửa post, Upload ảnh qua Supabase Storage."
+        "Bạn là CMS Agent. Tạo module CMS cho 'igaming-demo': Model Post (id, title, slug, content, published_at), API Routes CRUD, Admin UI danh sách/tạo/sửa post, Upload ảnh qua Supabase Storage."
       ]
     },
     {
@@ -39,7 +39,7 @@
         "src/app/robots.ts"
       ],
       "prompts": [
-        "Bạn là SEO Agent. Tạo setup SEO cho 'ibet-demo': Dynamic meta (title, description, og:image), structured data JSON-LD, sitemap.xml và robots.txt tự động."
+        "Bạn là SEO Agent. Tạo setup SEO cho 'igaming-demo': Dynamic meta (title, description, og:image), structured data JSON-LD, sitemap.xml và robots.txt tự động."
       ]
     },
     {
@@ -50,7 +50,7 @@
         "src/components/dashboard/**"
       ],
       "prompts": [
-        "Bạn là Dashboard Agent. Tạo UI dashboard cho 'ibet-demo': User Dashboard (profile, lịch sử hoạt động), Admin Dashboard (thống kê user, post), role-based access (admin, user)."
+        "Bạn là Dashboard Agent. Tạo UI dashboard cho 'igaming-demo': User Dashboard (profile, lịch sử hoạt động), Admin Dashboard (thống kê user, post), role-based access (admin, user)."
       ]
     },
     {
