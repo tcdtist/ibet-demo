@@ -1,4 +1,8 @@
 import { Shield } from "lucide-react";
+import type { Metadata } from "next";
+import { getAdminMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = getAdminMetadata();
 
 export default function AdminLayout({
   children,
