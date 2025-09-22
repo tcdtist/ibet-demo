@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Github, Zap } from "lucide-react";
+import { Menu, X, Github, Zap, User, LogIn, UserPlus } from "lucide-react";
+import { useAuth } from "@/lib/providers/supabase-provider";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 function Logo() {
   return (
@@ -71,10 +73,56 @@ function NavLink({
   );
 }
 
+function AuthButtons() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Button asChild variant="outline" size="sm">
+        <Link href="/login">
+          <LogIn className="mr-2 h-4 w-4" />
+          Login
+        </Link>
+      </Button>
+
+      <Button asChild size="sm">
+        <Link href="/signup">
+          <UserPlus className="mr-2 h-4 w-4" />
+          Sign Up
+        </Link>
+      </Button>
+    </div>
+  );
+}
+
+function UserMenu({ user }: { user: any }) {
+  return (
+    <div className="flex items-center space-x-2">
+      <Button asChild variant="ghost" size="sm">
+        <Link href="/dashboard">
+          <User className="mr-2 h-4 w-4" />
+          Dashboard
+        </Link>
+      </Button>
+
+      <LogoutButton variant="outline" size="sm" />
+    </div>
+  );
+}
+
 function ActionButtons() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center space-x-2">
+        <div className="animate-pulse bg-gray-200 h-8 w-16 rounded"></div>
+        <div className="animate-pulse bg-gray-200 h-8 w-20 rounded"></div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Button asChild variant="outline" size="sm" className="hidden md:flex">
+      <Button asChild variant="outline" size="sm" className="hidden lg:flex">
         <Link
           href="https://github.com/tcdtist/igaming-demo"
           target="_blank"
@@ -85,9 +133,7 @@ function ActionButtons() {
         </Link>
       </Button>
 
-      <Button asChild size="sm">
-        <Link href="#get-started">Get Started</Link>
-      </Button>
+      {user ? <UserMenu user={user} /> : <AuthButtons />}
     </>
   );
 }
