@@ -68,6 +68,10 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith(route)
   );
 
+  // Admin-only routes that require admin role
+  const adminRoutes = ["/admin"];
+  const isAdminRoute = adminRoutes.some((route) => pathname.startsWith(route));
+
   // Auth routes that should redirect if user is already logged in
   const authRoutes = ["/login", "/signup"];
   const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
@@ -101,17 +105,27 @@ export async function middleware(request: NextRequest) {
 
   // Handle admin routes - check for admin role
   if (pathname.startsWith("/admin") && user) {
-    // You can implement role-based access here
-    // For now, we'll allow any authenticated user to access admin
-    // In production, you should check user metadata or role from database
-    // Example: Check if user has admin role
-    // const { data: profile } = await supabase
-    //   .from('profiles')
-    //   .select('role')
-    //   .eq('id', user.id)
-    //   .single();
+    const userRole = user.user_metadata?.role;
+
+    if (userRole !== "admin") {
+      // Redirect non-admin users back to dashboard
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+
+    // Optional: Additional check via database profile
+    // You can uncomment this if you store roles in the database
+    // try {
+    //   const { data: profile } = await supabase
+    //     .from('profiles')
+    //     .select('role')
+    //     .eq('id', user.id)
+    //     .single();
     //
-    // if (profile?.role !== 'admin') {
+    //   if (profile?.role !== 'admin') {
+    //     return NextResponse.redirect(new URL('/dashboard', request.url));
+    //   }
+    // } catch (error) {
+    //   console.error('Error checking user role:', error);
     //   return NextResponse.redirect(new URL('/dashboard', request.url));
     // }
   }
