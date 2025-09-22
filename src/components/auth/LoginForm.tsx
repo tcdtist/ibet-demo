@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { login, loginWithGoogle } from "@/lib/auth/hooks";
 import { Button } from "@/components/ui/button";
 import { Mail, Lock, Chrome, Eye, EyeOff } from "lucide-react";
@@ -161,6 +161,19 @@ export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  // Check for auth errors from URL params (e.g., from auth callback)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlError = urlParams.get("error");
+    if (urlError) {
+      const decodedError = decodeURIComponent(urlError);
+      setError(decodedError);
+      // Clean up URL
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, "", newUrl);
+    }
+  }, []);
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -214,12 +214,26 @@ export default function SignupForm() {
       const { error, data } = await signup(email, password);
       if (error) {
         setError(error.message);
-      } else {
-        if (data?.user && !data.user.email_confirmed_at) {
-          setSuccess("Check your email for a verification link!");
+      } else if (data?.user) {
+        // Check if email confirmation is required
+        if (!data.user.email_confirmed_at && data.user.confirmation_sent_at) {
+          setSuccess(
+            "Account created! Please check your email and click the verification link to complete registration."
+          );
+          // Redirect to verification page after a delay
+          setTimeout(() => {
+            router.push(
+              `/auth/verify-email?email=${encodeURIComponent(email)}`
+            );
+          }, 2000);
         } else {
-          setSuccess("Account created successfully!");
-          setTimeout(() => router.push("/dashboard"), 2000);
+          // Email already confirmed (auto-confirm enabled)
+          setSuccess(
+            "Account created and verified! Redirecting to dashboard..."
+          );
+          setTimeout(() => {
+            router.push("/dashboard");
+          }, 1500);
         }
       }
     } catch (err) {
