@@ -1,0 +1,50 @@
+{
+  "name": "ibet-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A modern Next.js starter with Supabase, TailwindCSS, TypeScript, and Bun for ibet demo",
+  "scripts": {
+    "dev": "bunx next dev",
+    "build": "bunx next build",
+    "start": "bunx next start",
+    "lint": "bunx next lint",
+    "lint:fix": "bunx next lint --fix",
+    "type-check": "bunx tsc --noEmit",
+    "supabase:types": "bunx supabase gen types typescript --local > src/lib/database.types.ts"
+  },
+  "dependencies": {
+    "next": "^14.2.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@supabase/supabase-js": "^2.45.4",
+    "@supabase/ssr": "^0.5.1",
+    "tailwindcss": "^3.4.13",
+    "lucide-react": "^0.446.0",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.12",
+    "@tailwindcss/typography": "^0.5.15",
+    "supabase": "^1.200.3"
+  },
+  "keywords": [
+    "nextjs",
+    "supabase",
+    "tailwindcss",
+    "typescript",
+    "bun",
+    "starter",
+    "template"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  }
+}
