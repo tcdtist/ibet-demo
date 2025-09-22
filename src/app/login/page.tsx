@@ -1,4 +1,5 @@
 import LoginForm from "@/components/auth/LoginForm";
+import OAuthProviderCheck from "@/components/auth/OAuthProviderCheck";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 
@@ -14,7 +15,9 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <LoginForm />
+          <OAuthProviderCheck>
+            <LoginForm />
+          </OAuthProviderCheck>
 
           <div className="mt-6 text-center">
             <Link

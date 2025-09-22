@@ -236,7 +236,17 @@ export default function SignupForm() {
     try {
       const { error } = await loginWithGoogle();
       if (error) {
-        setError(error.message);
+        // Handle specific OAuth provider error
+        if (
+          error.message.includes("provider is not enabled") ||
+          error.message.includes("Unsupported provider")
+        ) {
+          setError(
+            "Google signup is currently not available. Please use email and password to create an account."
+          );
+        } else {
+          setError(error.message);
+        }
         setLoading(false);
       }
     } catch (err) {

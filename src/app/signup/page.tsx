@@ -1,4 +1,5 @@
 import SignupForm from "@/components/auth/SignupForm";
+import OAuthProviderCheck from "@/components/auth/OAuthProviderCheck";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 
@@ -14,7 +15,9 @@ export default function SignupPage() {
             </p>
           </div>
 
-          <SignupForm />
+          <OAuthProviderCheck>
+            <SignupForm />
+          </OAuthProviderCheck>
 
           <div className="mt-6 text-center">
             <Link
